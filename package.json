@@ -2,7 +2,10 @@
   "name": "hardhat-project",
   "scripts": {
     "test": "hardhat test",
-    "compile": "hardhat compile"
+    "compile": "hardhat compile",
+    "lint": "prettier --write 'contracts/**/*.sol'",
+    "solhint": "solhint --fix 'contracts/**/*.sol'",
+    "lint:all": "yarn lint && yarn solhint"
   },
   "dependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
@@ -17,6 +20,10 @@
     "hardhat-contract-sizer": "^2.4.0",
     "hardhat-deploy": "^0.10.5",
     "hardhat-gas-reporter": "^1.0.7",
+    "prettier": "^2.5.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "solhint": "^3.3.7",
+    "solhint-plugin-prettier": "^0.0.5",
     "typechain": "^7.0.0"
   },
   "devDependencies": {
