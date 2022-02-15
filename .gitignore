@@ -126,3 +126,4 @@ coverage
 .env
 .env.dev
 deployments
+typechain/
