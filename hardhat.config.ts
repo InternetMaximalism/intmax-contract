@@ -10,21 +10,23 @@ import {HardhatUserConfig} from "hardhat/config";
 import dotenv from 'dotenv';
 import {join} from "path";
 
-const networkIndex = process.argv.indexOf('--network');
-if (networkIndex !== -1) {
-    const networkName = process.argv[networkIndex + 1];
-    if (networkName === 'mainnet') {
-        dotenv.config({path: join(__dirname, '.env')});
-    } else {
-        dotenv.config({path: join(__dirname, '.env.dev')});
+const getNetworkName = (): string => {
+    const networkIndex = process.argv.indexOf('--network');
+    if (networkIndex !== -1) {
+        return "dev"
     }
+    return process.argv[networkIndex + 1];
+}
+
+const networkName = getNetworkName();
+if (networkName === 'mainnet') {
+    dotenv.config({path: join(__dirname, '.env')});
 } else {
     dotenv.config({path: join(__dirname, '.env.dev')});
 }
 
-
 const privateKey = process.env.PRIVATE_KEY;
-const nodeEndpoint = process.env.NODE_ENDPOINT|| '';
+const nodeEndpoint = process.env.NODE_ENDPOINT || '';
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || '';
 
 if (!privateKey) {
