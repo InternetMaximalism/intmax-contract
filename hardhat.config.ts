@@ -25,11 +25,11 @@ if (networkName === 'mainnet') {
     dotenv.config({path: join(__dirname, '.env.dev')});
 }
 
-const privateKey = process.env.PRIVATE_KEY;
+const privateKey = process.env.PRIVATE_KEY || '';
 const nodeEndpoint = process.env.NODE_ENDPOINT || '';
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || '';
 
-if (!privateKey) {
+if (networkName !== 'dev' && !privateKey) {
     throw Error('PRIVATE_KEY is required.');
 }
 
