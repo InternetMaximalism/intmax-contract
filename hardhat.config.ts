@@ -12,7 +12,7 @@ import {join} from "path";
 
 const getNetworkName = (): string => {
     const networkIndex = process.argv.indexOf('--network');
-    if (networkIndex !== -1) {
+    if (networkIndex === -1) {
         return "dev"
     }
     return process.argv[networkIndex + 1];
