@@ -25,7 +25,9 @@ if (networkName === 'mainnet') {
     dotenv.config({path: join(__dirname, '.env.dev')});
 }
 
-const privateKey = process.env.PRIVATE_KEY || '';
+const defaultPrivateKey = '0x64090ccb7d9a93037b693f36a209d23b9ed7ae3cbec5a32a0908830a7524d3c3';
+
+const privateKey = process.env.PRIVATE_KEY || defaultPrivateKey;
 const nodeEndpoint = process.env.NODE_ENDPOINT || '';
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || '';
 
