@@ -2,7 +2,6 @@ pragma solidity ^0.8.9;
 
 import "./Operations.sol";
 
-
 /// @title Intmax events
 interface Events {
     /// @notice New priority request event. Emitted when a request is placed into mapping

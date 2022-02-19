@@ -4,7 +4,6 @@ import {Operations} from "./Operations.sol";
 import "./Governance.sol";
 
 contract Storage {
-
     struct StoredBlockInfo {
         uint32 blockNumber;
         uint64 priorityOperations;
@@ -15,7 +14,11 @@ contract Storage {
     }
 
     /// @notice Returns the keccak hash of the ABI-encoded StoredBlockInfo
-    function hashStoredBlockInfo(StoredBlockInfo memory _storedBlockInfo) internal pure returns (bytes32) {
+    function hashStoredBlockInfo(StoredBlockInfo memory _storedBlockInfo)
+        internal
+        pure
+        returns (bytes32)
+    {
         return keccak256(abi.encode(_storedBlockInfo));
     }
 
@@ -43,7 +46,6 @@ contract Storage {
     /// @dev First open priority request id
     uint64 public firstPriorityRequestId;
 
-
     /// @dev Flag indicates that freeze (mass exit) mode is triggered
     /// @dev Once it was raised, it can not be cleared again, and all users must exit
     bool public isFreezeMode;
@@ -54,6 +56,7 @@ contract Storage {
         _;
     }
 
-    /// @dev Governance contract. Contains the governor (the owner) of whole system, validators list, possible tokens list
+    /// @dev Governance contract. Contains the governor (the owner) of whole system,
+    /// validators list, possible tokens list
     Governance internal governance;
 }

@@ -17,7 +17,11 @@ library Operations {
         Swap
     }
 
-    function writeDepositPubdataForPriorityQueue(Deposit memory op) internal pure returns (bytes memory buf) {
+    function writeDepositPubdataForPriorityQueue(Deposit memory op)
+        internal
+        pure
+        returns (bytes memory buf)
+    {
         buf = abi.encodePacked(
             uint8(OpType.Deposit),
             bytes4(0), // accountId (ignored) (update when ACCOUNT_ID_BYTES is changed)
