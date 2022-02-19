@@ -79,93 +79,93 @@ describe("Intmax", () => {
             await expect(intmax.connect(alice).depositERC20(testERC20.address, depositAmount, alice.address)).to.revertedWith('ERC20: insufficient allowance');
         });
     });
-
-    describe("withdrawPendingBalance(ETH)", async () => {
-        it("success", async () => {
-            const withdrawAmount = parseEther('100');
-
-            await intmax.depositETH(alice.address);
-
-            // withdraw ETH
-            await intmax.withdrawPendingBalance(alice.address, AddressZero, withdrawAmount);
-        });
-        it("fail without pending balance", async () => {
-            const withdrawAmount = parseEther('100');
-            await expect(intmax.withdrawPendingBalance(alice.address, AddressZero, withdrawAmount)).to.revertedWith('');
-        });
-    });
-
-    describe("withdrawPendingBalance(ERC20)", async () => {
-        it("success", async () => {
-            const withdrawAmount = parseEther('100');
-
-            await testERC20.connect(alice).approve(intmax.address, withdrawAmount);
-            await intmax.depositERC20(testERC20.address, withdrawAmount, alice.address);
-
-            // withdraw ERC20
-            await intmax.withdrawPendingBalance(alice.address, testERC20.address, withdrawAmount);
-        });
-        it("fail without pending balance", async () => {
-            const withdrawAmount = parseEther('100');
-            await expect(intmax.withdrawPendingBalance(alice.address, AddressZero, withdrawAmount)).to.revertedWith('');
-        });
-    });
-
-    describe("exit(ETH)", async () => {
-        it("success", async () => {
-            const exitAmount = parseEther('100');
-            await intmax.exit(alice.address, AddressZero, exitAmount);
-        });
-        it("fail in normal mode", async () => {
-            const exitAmount = parseEther('100');
-            await expect(intmax.exit(alice.address, AddressZero, exitAmount)).to.revertedWith('Exit mode is normal');
-        });
-        it("fail without balance", async () => {
-            const exitAmount = parseEther('100');
-            await expect(intmax.exit(alice.address, AddressZero, exitAmount)).to.revertedWith('Your balance is zero');
-        });
-    });
-
-    describe("exit(ERC20)", async () => {
-        it("success", async () => {
-            const exitAmount = parseEther('100');
-            await intmax.exit(alice.address, testERC20.address, exitAmount);
-        });
-        it("fail in normal mode", async () => {
-            const exitAmount = parseEther('100');
-            await expect(intmax.exit(alice.address, testERC20.address, exitAmount)).to.revertedWith('Exit mode is normal');
-        });
-        it("fail without balance", async () => {
-            const exitAmount = parseEther('100');
-            await expect(intmax.exit(alice.address, testERC20.address, exitAmount)).to.revertedWith('Your balance is zero');
-        });
-    });
-
-    describe("commitBlocks()", async () => {
-        it("success", async () => {
-            await intmax.commitBlocks();
-
-        });
-        it("fail", async () => {
-            await expect(intmax.commitBlocks()).to.revertedWith('');
-        });
-    });
-
-    describe("proveBlocks()", async () => {
-        it("success", async () => {
-            await intmax.proveBlocks();
-        });
-        it("fail", async () => {
-            await expect(intmax.proveBlocks()).to.revertedWith('');
-        });
-    });
-
-    describe("executeBlocks()", async () => {
-        it("success", async () => {
-            await intmax.executeBlocks();
-        });
-        it("fail", async () => {
-            await expect(intmax.executeBlocks()).to.revertedWith('');
-        });
-    });
+    //
+    // describe("withdrawPendingBalance(ETH)", async () => {
+    //     it("success", async () => {
+    //         const withdrawAmount = parseEther('100');
+    //
+    //         await intmax.depositETH(alice.address);
+    //
+    //         // withdraw ETH
+    //         await intmax.withdrawPendingBalance(alice.address, AddressZero, withdrawAmount);
+    //     });
+    //     it("fail without pending balance", async () => {
+    //         const withdrawAmount = parseEther('100');
+    //         await expect(intmax.withdrawPendingBalance(alice.address, AddressZero, withdrawAmount)).to.revertedWith('');
+    //     });
+    // });
+    //
+    // describe("withdrawPendingBalance(ERC20)", async () => {
+    //     it("success", async () => {
+    //         const withdrawAmount = parseEther('100');
+    //
+    //         await testERC20.connect(alice).approve(intmax.address, withdrawAmount);
+    //         await intmax.depositERC20(testERC20.address, withdrawAmount, alice.address);
+    //
+    //         // withdraw ERC20
+    //         await intmax.withdrawPendingBalance(alice.address, testERC20.address, withdrawAmount);
+    //     });
+    //     it("fail without pending balance", async () => {
+    //         const withdrawAmount = parseEther('100');
+    //         await expect(intmax.withdrawPendingBalance(alice.address, AddressZero, withdrawAmount)).to.revertedWith('');
+    //     });
+    // });
+    //
+    // describe("exit(ETH)", async () => {
+    //     it("success", async () => {
+    //         const exitAmount = parseEther('100');
+    //         await intmax.exit(alice.address, AddressZero, exitAmount);
+    //     });
+    //     it("fail in normal mode", async () => {
+    //         const exitAmount = parseEther('100');
+    //         await expect(intmax.exit(alice.address, AddressZero, exitAmount)).to.revertedWith('Exit mode is normal');
+    //     });
+    //     it("fail without balance", async () => {
+    //         const exitAmount = parseEther('100');
+    //         await expect(intmax.exit(alice.address, AddressZero, exitAmount)).to.revertedWith('Your balance is zero');
+    //     });
+    // });
+    //
+    // describe("exit(ERC20)", async () => {
+    //     it("success", async () => {
+    //         const exitAmount = parseEther('100');
+    //         await intmax.exit(alice.address, testERC20.address, exitAmount);
+    //     });
+    //     it("fail in normal mode", async () => {
+    //         const exitAmount = parseEther('100');
+    //         await expect(intmax.exit(alice.address, testERC20.address, exitAmount)).to.revertedWith('Exit mode is normal');
+    //     });
+    //     it("fail without balance", async () => {
+    //         const exitAmount = parseEther('100');
+    //         await expect(intmax.exit(alice.address, testERC20.address, exitAmount)).to.revertedWith('Your balance is zero');
+    //     });
+    // });
+    //
+    // describe("commitBlocks()", async () => {
+    //     it("success", async () => {
+    //         await intmax.commitBlocks();
+    //
+    //     });
+    //     it("fail", async () => {
+    //         await expect(intmax.commitBlocks()).to.revertedWith('');
+    //     });
+    // });
+    //
+    // describe("proveBlocks()", async () => {
+    //     it("success", async () => {
+    //         await intmax.proveBlocks();
+    //     });
+    //     it("fail", async () => {
+    //         await expect(intmax.proveBlocks()).to.revertedWith('');
+    //     });
+    // });
+    //
+    // describe("executeBlocks()", async () => {
+    //     it("success", async () => {
+    //         await intmax.executeBlocks();
+    //     });
+    //     it("fail", async () => {
+    //         await expect(intmax.executeBlocks()).to.revertedWith('');
+    //     });
+    // });
 });
