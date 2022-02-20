@@ -21,6 +21,8 @@ jobs:
         run: yarn
       - name: yarn lint:all
         run: yarn lint:all
+      - name: yarn compile
+        run: yarn compile
       - name: yarn test
         run: yarn test
 
